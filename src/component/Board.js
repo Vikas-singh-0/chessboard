@@ -4,10 +4,13 @@ import Knight from './Knight'
 import { renderSquare } from './renderSquare'
 
 export default function Board() {
+  const handleClick = (pos) => {
+    setKnightPos(pos);
+  }
   const [knightPos, setKnightPos] = useState([0, 0]);
   const squares = [];
   for (let i = 0; i < 64; i++) {
-    squares.push(renderSquare(i, knightPos));
+    squares.push(renderSquare(i, knightPos, handleClick));
   }
   return (
     <div style={{
