@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function Square({ black, children, handleClick, pos }) {
+const Square = memo(({ black, children, handleClick, pos }) => {
   const fill = black ? 'black' : 'white';
   const stroke = black ? 'white' : 'black';
+  console.log('h');
   return (
     <div
       onClick={() => handleClick(pos)}
@@ -19,4 +20,6 @@ export default function Square({ black, children, handleClick, pos }) {
       {children}
     </div>
   )
-}
+});
+
+export default Square;
