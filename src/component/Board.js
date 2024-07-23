@@ -1,10 +1,9 @@
 import React, { memo, useEffect, useState } from "react";
 import Square from "./Square";
 import Knight from "./Knight";
-import { renderSquare } from "./renderSquare";
+import { RenderSquare } from "./RenderSquare";
 import { canMoveKnight } from "./caMoveKnight";
 import { DndProvider, useDrag } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { Container } from "./dragExample/Container";
 
 const Board = memo(() => {
@@ -16,11 +15,11 @@ const Board = memo(() => {
   const [knightPos, setKnightPos] = useState([0, 0]);
   const squares = [];
   for (let i = 0; i < 64; i++) {
-    squares.push(renderSquare(i, knightPos, handleClick));
+    squares.push(RenderSquare(i, knightPos, handleClick, setKnightPos));
   }
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    // <DndProvider backend={HTML5Backend}>
       <div
         style={{
           width: "100%",
@@ -30,9 +29,9 @@ const Board = memo(() => {
         }}
       >
         {squares}
-        <Container/>
+        {/* <Container/> */}
       </div>
-    </DndProvider>
+    // </DndProvider>
   );
 });
 
