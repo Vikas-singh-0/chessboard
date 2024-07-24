@@ -4,15 +4,19 @@ import Knight from "./Knight";
 import { RenderSquare } from "./RenderSquare";
 import { canMoveKnight } from "./caMoveKnight";
 import { DndProvider, useDrag } from "react-dnd";
-import { Container } from "./dragExample/Container";
 
 const Board = memo(() => {
-  const handleClick = (pos) => {
+  const handleClick = (kp, pos) => {
     if (canMoveKnight(knightPos, pos)) {
-      setKnightPos(pos);
+      setKnightPos((prev) => {console.log('prev', prev); return pos});
     }
   };
-  const [knightPos, setKnightPos] = useState([0, 0]);
+  const [knightPos, setKnightPos] = useState((prev) => {
+    console.log('prev', prev);
+    return ([0, 0])
+  });
+  console.log('Board', knightPos);
+
   const squares = [];
   for (let i = 0; i < 64; i++) {
     squares.push(RenderSquare(i, knightPos, handleClick, setKnightPos));
